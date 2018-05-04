@@ -1,0 +1,57 @@
+1.初始化一个Git仓库
+  git init
+2.添加文件
+  git add <file>
+3.提交
+  git commit -m "说明"
+4.查看仓库状态
+  git status
+5.对比修改
+  git diff
+6.查看提交历史记录
+  git log
+7.查看命令记录
+  git reflog
+8.回退到某个版本
+  git reset --hard <commitId>
+9.撤销修改
+  a.尚未add到暂存区时，git checkout -- <file>
+  b.已add到暂存区，先执行 git reset HEAD <file>，回到a.
+  c.已commit，使用命令<8>回退到之前版本。
+10.删除文件
+  git rm <file>，确认:git commit，撤销删除:git checkout -- <file>
+  git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+
+11.添加到远程库
+  要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+  关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+  此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+12.从远程仓库克隆
+  git clone git@github.com:<path>/<repo>.git
+  git pull 同步
+
+分支管理：
+  1.查看分支：git branch
+  2.创建分支：git branch <name>
+  3.切换分支：git checkout <name>
+  4.创建+切换分支：git checkout -b <name>
+  5.合并某分支到当前分支：git merge <name> 
+    合并时创建新commit：git merge --no-ff -m "merge with no-ff" <name>
+  6.删除分支：git branch -d <name>
+  7.查看分支图：git log --graph
+  8.保存工作现场：git stash
+  9.查看工作现场：git stash list
+  10.恢复工作现场： git stash pop， git stash apply stash@{0}
+  11.建立本地分支和远程分支链接关系：git branch --set-upstream branch-name origin/branch-name
+
+标签：
+  1.git tag <name>用于新建一个标签，默认为HEAD，也可以指定一个commit id；
+  2.git tag -a <tagname> -m "blablabla..."可以指定标签信息；
+  3.git tag -s <tagname> -m "blablabla..."可以用PGP签名标签；
+  4.git tag可以查看所有标签。
+  5.git show <tagname> 查看标签信息
+  6.git push origin <tagname>可以推送一个本地标签；
+  7.git push origin --tags可以推送全部未推送过的本地标签；
+  8.git tag -d <tagname>可以删除一个本地标签；
+  9.git push origin :refs/tags/<tagname>可以删除一个远程标签。
+     
